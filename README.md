@@ -19,8 +19,10 @@ java -jar tictactoe-0.0.1-SNAPSHOT.jar
 ```
 ### Application Properties Settings
 User can change game settings from application.properties file that located in /target/classes folder.
+```
 screen.rows -> game board rows count
 screen.columns -> game board columns count
 player.human.1.sign -> first player's mark
 player.human.2.sign -> second player's mark
 player.computer.sign -> computer's mark
+```
