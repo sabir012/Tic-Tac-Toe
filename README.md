@@ -18,7 +18,7 @@ Afterwards that all the tests will be passed, target source folder will be creat
 java -jar tictactoe-0.0.1-SNAPSHOT.jar
 ```
 ### Application Properties Settings
-User can change game settings from application.properties file that located in /target/classes folder.
+User can change game settings from application.properties file that located in /src/main/resources folder. After any updates in properties file, user should build new jar.
 ```
 screen.rows -> game board rows count
 screen.columns -> game board columns count
