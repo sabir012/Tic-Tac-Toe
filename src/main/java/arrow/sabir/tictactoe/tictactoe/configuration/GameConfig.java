@@ -29,7 +29,6 @@ public class GameConfig {
     @Value("${player.computer.sign}")
     private Computer player3;
 
-
     @Value("${screen.rows}")
     private int rows;
 
@@ -38,19 +37,19 @@ public class GameConfig {
 
 
     @Bean
-    public Game game(){
-        return new GameController(initMediator());
+    public Game game(GameMediator mediator){
+        return new GameController(mediator);
     }
 
     @Bean
-    public GameMediator initMediator() {
-        return new GameMediatorImpl(gameState());
+    public GameMediator mediator(GameState gameState) {
+        return new GameMediatorImpl(gameState);
     }
 
 
     @Bean
-    public GameState gameState() {
-       return new GameState(playerStateMachine(), rows(), columns());
+    public GameState gameState(PlayerStateMachine playerStateMachine, int rows, int columns) {
+       return new GameState(playerStateMachine, rows, columns);
     }
 
     @Bean
