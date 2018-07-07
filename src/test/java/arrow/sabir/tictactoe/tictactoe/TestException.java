@@ -55,9 +55,16 @@ public class TestException extends TestCase {
     }
 
     @Test
-    public void test_out_of_bound_exception(){
+    public void test_out_of_bound_exception_column(){
         //then
-        assertThatThrownBy(()->mediator.playerMoved(new Move.MoveBuilder(10,10).build()))
+        assertThatThrownBy(()->mediator.playerMoved(new Move.MoveBuilder(1,20).build()))
+                .isInstanceOf(OutOfBoundMoveException.class);
+    }
+
+    @Test
+    public void test_out_of_bound_exception_row(){
+        //then
+        assertThatThrownBy(()->mediator.playerMoved(new Move.MoveBuilder(20,1).build()))
                 .isInstanceOf(OutOfBoundMoveException.class);
     }
 

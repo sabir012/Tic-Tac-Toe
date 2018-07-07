@@ -1,6 +1,6 @@
 package arrow.sabir.tictactoe.tictactoe.viewmodel;
 
-public class ExceptionViewModel extends ViewModel {
+public class ExceptionViewModel implements ViewModel {
 
     private String message;
 

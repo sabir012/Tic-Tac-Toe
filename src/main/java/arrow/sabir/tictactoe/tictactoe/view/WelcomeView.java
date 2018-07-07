@@ -6,7 +6,7 @@ import arrow.sabir.tictactoe.tictactoe.viewmodel.ViewModel;
 import arrow.sabir.tictactoe.tictactoe.viewmodel.WelcomeViewModel;
 
 
-public class WelcomeView extends GameView {
+public class WelcomeView implements GameView {
 
     @Override
     public void draw(ViewModel welcomeViewModel) {

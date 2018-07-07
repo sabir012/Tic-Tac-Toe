@@ -5,7 +5,7 @@ import arrow.sabir.tictactoe.tictactoe.model.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WelcomeViewModel extends ViewModel {
+public class WelcomeViewModel implements ViewModel {
 
     private ArrayList<Player> players;
 

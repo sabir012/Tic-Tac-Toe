@@ -3,7 +3,7 @@ package arrow.sabir.tictactoe.tictactoe.viewmodel;
 import arrow.sabir.tictactoe.tictactoe.model.player.Player;
 
 
-public class WinnerViewModel extends ViewModel {
+public class WinnerViewModel implements ViewModel {
 
     private Player winner;
 

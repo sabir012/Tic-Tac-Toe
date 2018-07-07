@@ -31,7 +31,7 @@ public class GameMediatorImpl implements GameMediator {
 
     @Override
     public void playerMoved(Move move) throws OutOfBoundMoveException, CellMarkedException {
-        if (move.column > this.gameState.boardColumns || move.column > this.gameState.boardRows
+        if (move.column > this.gameState.boardColumns || move.row > this.gameState.boardRows
                 || move.column <= 0 || move.column <= 0) {
             throw new OutOfBoundMoveException();
         }

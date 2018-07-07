@@ -3,7 +3,7 @@ package arrow.sabir.tictactoe.tictactoe.viewmodel;
 import arrow.sabir.tictactoe.tictactoe.model.player.Player;
 
 
-public class NextMoveViewModel extends ViewModel {
+public class NextMoveViewModel implements ViewModel {
 
     private Player player;
 

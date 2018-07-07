@@ -2,7 +2,7 @@ package arrow.sabir.tictactoe.tictactoe.view;
 
 import arrow.sabir.tictactoe.tictactoe.viewmodel.ViewModel;
 
-public abstract class GameView {
+public interface GameView {
 
-    public abstract void draw(ViewModel viewModel);
+    void draw(ViewModel viewModel);
 }

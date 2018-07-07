@@ -1,7 +1,7 @@
 package arrow.sabir.tictactoe.tictactoe.viewmodel;
 
 
-public class BoardViewModel extends ViewModel {
+public class BoardViewModel implements ViewModel {
     private String[][] board;
 
     private int rows;

@@ -3,7 +3,7 @@ package arrow.sabir.tictactoe.tictactoe.view;
 import arrow.sabir.tictactoe.tictactoe.viewmodel.ViewModel;
 import arrow.sabir.tictactoe.tictactoe.viewmodel.WinnerViewModel;
 
-public class WinnerView extends GameView {
+public class WinnerView implements GameView {
 
     @Override
     public void draw(ViewModel viewModel) {

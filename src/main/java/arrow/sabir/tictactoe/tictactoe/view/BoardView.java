@@ -1,13 +1,12 @@
 package arrow.sabir.tictactoe.tictactoe.view;
 
 
-import arrow.sabir.tictactoe.tictactoe.model.player.Player;
 import arrow.sabir.tictactoe.tictactoe.view.constant.BoardConstant;
 import arrow.sabir.tictactoe.tictactoe.viewmodel.BoardViewModel;
 import arrow.sabir.tictactoe.tictactoe.viewmodel.ViewModel;
 
 
-public class BoardView extends GameView{
+public class BoardView implements GameView{
 
     @Override
     public void draw(ViewModel boardViewModel) {
