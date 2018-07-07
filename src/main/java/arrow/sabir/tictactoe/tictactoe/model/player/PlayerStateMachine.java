@@ -27,6 +27,15 @@ public class PlayerStateMachine {
         return players;
     }
 
+    public void setWinner(Player player){
+        this.winner = player;
+    }
+
+    public void setNewPlayer(Player player){
+        players.add(player);
+    }
+
+
     public void moveToNextPlayer(){
         int currentPlayerIndex = players.indexOf(currentPlayer);
 
@@ -35,11 +44,5 @@ public class PlayerStateMachine {
         this.currentPlayer = players.get(nextIndex);
     }
 
-    public void setWinner(Player player){
-        this.winner = player;
-    }
 
-    public void setNewPlayer(Player player){
-        players.add(player);
-    }
 }

@@ -8,7 +8,7 @@ public class PlayerMoveView extends GameView {
     public void draw(ViewModel viewModel) {
         System.out.println("Player "+
                 ((PlayerMoveViewModel)viewModel).getPlayer().getSign()+
-                " marked cell ["+((PlayerMoveViewModel)viewModel).getMove().getRow()+
-                ","+((PlayerMoveViewModel)viewModel).getMove().getColumn()+"]");
+                " marked cell ["+((PlayerMoveViewModel)viewModel).getMove().row +
+                ","+((PlayerMoveViewModel)viewModel).getMove().column + "]");
     }
 }

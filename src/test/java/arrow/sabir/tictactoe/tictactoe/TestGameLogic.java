@@ -26,8 +26,8 @@ public class TestGameLogic extends TestCase {
                 new PlayerStateMachine(
                         new ArrayList<Player>(Arrays.asList(new Human("X")))), 3, 3);
 
-        this.gameState.getPlayerStateMachine().setNewPlayer(new Human("O"));
-        this.gameState.getPlayerStateMachine().setNewPlayer(new Computer("H"));
+        this.gameState.playerStateMachine.setNewPlayer(new Human("O"));
+        this.gameState.playerStateMachine.setNewPlayer(new Computer("H"));
 
         mediator = new GameMediatorImpl(this.gameState);
     }
@@ -35,9 +35,9 @@ public class TestGameLogic extends TestCase {
     @Test
     public void test_row_winner_found(){
         //when
-        this.gameState.getBoardState()[0][0] = "X";
-        this.gameState.getBoardState()[0][1] = "X";
-        this.gameState.getBoardState()[0][2] = "X";
+        this.gameState.boardState[0][0] = "X";
+        this.gameState.boardState[0][1] = "X";
+        this.gameState.boardState[0][2] = "X";
 
         //then
         assertEquals(true, mediator.isWinnerFound());
@@ -46,9 +46,9 @@ public class TestGameLogic extends TestCase {
     @Test
     public void test_column_winner_found(){
         //when
-        this.gameState.getBoardState()[0][0] = "X";
-        this.gameState.getBoardState()[1][0] = "X";
-        this.gameState.getBoardState()[2][0] = "X";
+        this.gameState.boardState[0][0] = "X";
+        this.gameState.boardState[1][0] = "X";
+        this.gameState.boardState[2][0] = "X";
 
         //then
         assertEquals(true, mediator.isWinnerFound());
@@ -57,9 +57,9 @@ public class TestGameLogic extends TestCase {
     @Test
     public void test_diagonal_winner_found(){
         //when
-        this.gameState.getBoardState()[0][0] = "X";
-        this.gameState.getBoardState()[1][1] = "X";
-        this.gameState.getBoardState()[2][2] = "X";
+        this.gameState.boardState[0][0] = "X";
+        this.gameState.boardState[1][1] = "X";
+        this.gameState.boardState[2][2] = "X";
 
         //then
         assertEquals(true, mediator.isWinnerFound());
@@ -68,8 +68,8 @@ public class TestGameLogic extends TestCase {
     @Test
     public void test_row_winner_not_found(){
         //when
-        this.gameState.getBoardState()[0][0] = "X";
-        this.gameState.getBoardState()[0][1] = "X";
+        this.gameState.boardState[0][0] = "X";
+        this.gameState.boardState[0][1] = "X";
 
         //then
         assertEquals(false, mediator.isWinnerFound());
@@ -78,8 +78,8 @@ public class TestGameLogic extends TestCase {
     @Test
     public void test_column_winner_not_found(){
         //when
-        this.gameState.getBoardState()[0][0] = "X";
-        this.gameState.getBoardState()[1][0] = "X";
+        this.gameState.boardState[0][0] = "X";
+        this.gameState.boardState[1][0] = "X";
 
         //then
         assertEquals(false, mediator.isWinnerFound());
@@ -88,8 +88,8 @@ public class TestGameLogic extends TestCase {
     @Test
     public void test_diagonal_winner_not_found(){
         //when
-        this.gameState.getBoardState()[0][0] = "X";
-        this.gameState.getBoardState()[1][1] = "X";
+        this.gameState.boardState[0][0] = "X";
+        this.gameState.boardState[1][1] = "X";
 
         //then
         assertEquals(false, mediator.isWinnerFound());
@@ -98,9 +98,9 @@ public class TestGameLogic extends TestCase {
     @Test
     public void test_board_full(){
         //when
-        for(int i=0;i<this.gameState.getBoardState().length;i++){
-            for(int j=0; j<this.gameState.getBoardState()[0].length;j++){
-                this.gameState.getBoardState()[i][j] = "X";
+        for(int i=0;i<this.gameState.boardState.length;i++){
+            for(int j=0; j<this.gameState.boardState[0].length;j++){
+                this.gameState.boardState[i][j] = "X";
             }
         }
 

@@ -16,6 +16,6 @@ public class AI {
             column = ThreadLocalRandom.current().nextInt(1, columns+1);
         }
 
-        return new Move(row,column);
+        return new Move.MoveBuilder(row,column).build();
     }
 }

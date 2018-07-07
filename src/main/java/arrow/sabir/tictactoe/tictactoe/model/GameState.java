@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class GameState {
 
-    private String[][] boardState;
+    public final String[][] boardState;
+    public final PlayerStateMachine playerStateMachine;
 
-    private PlayerStateMachine playerStateMachine;
-
-    private int boardRows;
-    private int boardColumns;
+    public final int boardRows;
+    public final int boardColumns;
 
 
     @Autowired
@@ -22,22 +21,5 @@ public class GameState {
         this.boardColumns = columns;
 
         this.boardState = new String[this.boardRows][this.boardColumns];
-    }
-
-
-    public String[][] getBoardState() {
-        return boardState;
-    }
-
-    public PlayerStateMachine getPlayerStateMachine() {
-        return playerStateMachine;
-    }
-
-    public int getBoardRows() {
-        return boardRows;
-    }
-
-    public int getBoardColumns() {
-        return boardColumns;
     }
 }

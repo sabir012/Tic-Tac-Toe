@@ -35,8 +35,8 @@ public class TestException extends TestCase {
                 new PlayerStateMachine(
                         new ArrayList<Player>(Arrays.asList(new Human("X")))), 3, 3);
 
-        this.gameState.getPlayerStateMachine().setNewPlayer(new Human("O"));
-        this.gameState.getPlayerStateMachine().setNewPlayer(new Computer("H"));
+        this.gameState.playerStateMachine.setNewPlayer(new Human("O"));
+        this.gameState.playerStateMachine.setNewPlayer(new Computer("H"));
 
         mediator = new GameMediatorImpl(this.gameState);
 
@@ -47,17 +47,17 @@ public class TestException extends TestCase {
     @Test
     public void test_cell_marked_exception(){
         //when
-        this.gameState.getBoardState()[1][1] = "X";
+        this.gameState.boardState[1][1] = "X";
 
         //then
-        assertThatThrownBy(()->mediator.playerMoved(new Move(2,2)))
+        assertThatThrownBy(()->mediator.playerMoved(new Move.MoveBuilder(2,2).build()))
                 .isInstanceOf(CellMarkedException.class);
     }
 
     @Test
     public void test_out_of_bound_exception(){
         //then
-        assertThatThrownBy(()->mediator.playerMoved(new Move(10,10)))
+        assertThatThrownBy(()->mediator.playerMoved(new Move.MoveBuilder(10,10).build()))
                 .isInstanceOf(OutOfBoundMoveException.class);
     }
 

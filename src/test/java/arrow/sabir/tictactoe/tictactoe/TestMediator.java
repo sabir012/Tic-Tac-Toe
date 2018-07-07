@@ -28,12 +28,12 @@ public class TestMediator extends TestCase {
                 new PlayerStateMachine(
                         new ArrayList<Player>(Arrays.asList(new Human("X")))), 3, 3);
 
-        this.gameState.getPlayerStateMachine().setNewPlayer(new Human("O"));
-        this.gameState.getPlayerStateMachine().setNewPlayer(new Computer("H"));
+        this.gameState.playerStateMachine.setNewPlayer(new Human("O"));
+        this.gameState.playerStateMachine.setNewPlayer(new Computer("H"));
 
-        for(int i=0; i<gameState.getBoardState().length;i++){
-            for(int j=0; j<gameState.getBoardState()[0].length;j++){
-                gameState.getBoardState()[i][j] = " ";
+        for(int i=0; i<gameState.boardState.length;i++){
+            for(int j=0; j<gameState.boardState[0].length;j++){
+                gameState.boardState[i][j] = " ";
             }
         }
 
@@ -43,18 +43,18 @@ public class TestMediator extends TestCase {
     @Test
     public void test_mediator_player_moved() throws OutOfBoundMoveException, CellMarkedException {
         //when
-        Move move = new Move(1,1);
+        Move move = new Move.MoveBuilder(1,1).build();
         mediator.playerMoved(move);
 
         //then
-        assertEquals("X", this.gameState.getBoardState()[0][0]);
+        assertEquals("X", this.gameState.boardState[0][0]);
     }
 
     @Test
     public void test_mediator_isComputer_move() throws OutOfBoundMoveException, CellMarkedException {
         //when
-        mediator.playerMoved(new Move(1,1));
-        mediator.playerMoved(new Move(2,2));
+        mediator.playerMoved(new Move.MoveBuilder(1,1).build());
+        mediator.playerMoved(new Move.MoveBuilder(2,2).build());
 
         boolean result = mediator.isComputerMove();
 

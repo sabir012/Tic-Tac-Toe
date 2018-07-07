@@ -1,20 +1,25 @@
 package arrow.sabir.tictactoe.tictactoe.model;
 
 public class Move {
-    private int row;
-    private int column;
+    public final int row;
+    public final int column;
 
-
-    public Move(int row, int column){
-        this.row = row;
-        this.column = column;
+    private Move(MoveBuilder builder){
+        this.row = builder.row;
+        this.column = builder.column;
     }
 
-    public int getRow() {
-        return row;
-    }
+    public static class MoveBuilder{
+        private int row;
+        private int column;
 
-    public int getColumn() {
-        return column;
+        public MoveBuilder(int row, int column){
+            this.row = row;
+            this.column = column;
+        }
+
+        public Move build() {
+            return new Move(this);
+        }
     }
 }

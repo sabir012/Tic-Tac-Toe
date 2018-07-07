@@ -24,12 +24,12 @@ public class TestAI extends TestCase {
                 new PlayerStateMachine(
                         new ArrayList<Player>(Arrays.asList(new Human("X")))), 3, 3);
 
-        this.gameState.getPlayerStateMachine().setNewPlayer(new Human("O"));
-        this.gameState.getPlayerStateMachine().setNewPlayer(new Computer("H"));
+        this.gameState.playerStateMachine.setNewPlayer(new Human("O"));
+        this.gameState.playerStateMachine.setNewPlayer(new Computer("H"));
 
-        for(int i=0; i<gameState.getBoardState().length;i++){
-            for(int j=0; j<gameState.getBoardState()[0].length;j++){
-                gameState.getBoardState()[i][j] = "X";
+        for(int i=0; i<gameState.boardState.length;i++){
+            for(int j=0; j<gameState.boardState[0].length;j++){
+                gameState.boardState[i][j] = "X";
             }
         }
     }
@@ -37,15 +37,15 @@ public class TestAI extends TestCase {
     @Test
     public void test_AI_can_found_last_cell(){
         //when
-        this.gameState.getBoardState()[0][0] = " ";
+        this.gameState.boardState[0][0] = " ";
         Move move = new AI().getComputerMove(
-                this.gameState.getBoardState(),
-                this.gameState.getBoardRows(),
-                this.gameState.getBoardColumns());
+                this.gameState.boardState,
+                this.gameState.boardRows,
+                this.gameState.boardColumns);
 
         //then
-        assertEquals(1, move.getRow());
-        assertEquals(1, move.getColumn());
+        assertEquals(1, move.row);
+        assertEquals(1, move.column);
     }
 
 }

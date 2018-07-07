@@ -31,35 +31,35 @@ public class GameMediatorImpl implements GameMediator {
 
     @Override
     public void playerMoved(Move move) throws OutOfBoundMoveException, CellMarkedException {
-        if (move.getColumn() > this.gameState.getBoardColumns() || move.getRow() > this.gameState.getBoardRows()
-                || move.getRow() <= 0 || move.getColumn() <= 0) {
+        if (move.column > this.gameState.boardColumns || move.column > this.gameState.boardRows
+                || move.column <= 0 || move.column <= 0) {
             throw new OutOfBoundMoveException();
         }
 
-        if(this.gameState.getBoardState()[move.getRow() - 1][move.getColumn() - 1] != " "){
+        if(this.gameState.boardState[move.row - 1][move.column - 1] != " "){
             throw new CellMarkedException();
         }
 
-        this.gameState.getBoardState()[move.getRow() - 1][move.getColumn() - 1] =
-                this.gameState.getPlayerStateMachine().getCurrentPlayer().getSign();
+        this.gameState.boardState[move.row - 1][move.column - 1] =
+                this.gameState.playerStateMachine.getCurrentPlayer().getSign();
 
         this.gameView = new PlayerMoveView();
         this.gameView.draw(
-                new PlayerMoveViewModel(this.gameState.getPlayerStateMachine().getCurrentPlayer(), move));
+                new PlayerMoveViewModel(this.gameState.playerStateMachine.getCurrentPlayer(), move));
 
-        this.gameState.getPlayerStateMachine().moveToNextPlayer();
+        this.gameState.playerStateMachine.moveToNextPlayer();
 
         this.gameView = new BoardView();
         this.gameView.draw(
-                new BoardViewModel(this.gameState.getBoardState(),
-                        gameState.getBoardRows(),
-                        gameState.getBoardColumns()));
+                new BoardViewModel(this.gameState.boardState,
+                        gameState.boardRows,
+                        gameState.boardColumns));
     }
 
     @Override
     public void gameInitiated() {
         this.gameView =  new WelcomeView();
-        this.gameView.draw(new WelcomeViewModel(this.gameState.getPlayerStateMachine().getPlayers()));
+        this.gameView.draw(new WelcomeViewModel(this.gameState.playerStateMachine.getPlayers()));
 
     }
 
@@ -67,31 +67,31 @@ public class GameMediatorImpl implements GameMediator {
     public void gameStarted() {
         this.gameView = new BoardView();
         this.gameView.draw(
-                new BoardViewModel(this.gameState.getBoardState(),
-                        gameState.getBoardRows(),
-                        gameState.getBoardColumns()));
+                new BoardViewModel(this.gameState.boardState,
+                        gameState.boardRows,
+                        gameState.boardColumns));
     }
 
     @Override
     public boolean isWinnerFound() {
-        List<String> signes = this.gameState.getPlayerStateMachine()
+        List<String> signes = this.gameState.playerStateMachine
                                                             .getPlayers()
                                                             .stream()
                                                             .map(player -> player.getSign())
                                                             .collect(Collectors.toList());
 
-        String[][] board = this.gameState.getBoardState();
+        String[][] board = this.gameState.boardState;
 
         String winner = new BoardUtils().checkWinner(board, signes);
 
         if(winner != ""){
-            Optional<Player> player = this.gameState.getPlayerStateMachine()
+            Optional<Player> player = this.gameState.playerStateMachine
                                             .getPlayers()
                                             .stream()
                                             .filter(p->p.getSign() == winner)
                                             .findFirst();
 
-            this.gameState.getPlayerStateMachine().setWinner(player.get());
+            this.gameState.playerStateMachine.setWinner(player.get());
             this.gameView = new WinnerView();
             this.gameView.draw(new WinnerViewModel(player.get()));
 
@@ -104,7 +104,7 @@ public class GameMediatorImpl implements GameMediator {
 
     @Override
     public boolean isBoardFull() {
-        String[][] board = this.gameState.getBoardState();
+        String[][] board = this.gameState.boardState;
 
         for(int i = 0; i < board.length; i++){
             for(int j = 0; j < board[0].length; j++){
@@ -127,7 +127,7 @@ public class GameMediatorImpl implements GameMediator {
     @Override
     public void nextMove() {
         this.gameView = new NextMoveView();
-        this.gameView.draw(new NextMoveViewModel(this.gameState.getPlayerStateMachine().getCurrentPlayer()));
+        this.gameView.draw(new NextMoveViewModel(this.gameState.playerStateMachine.getCurrentPlayer()));
     }
 
     @Override
@@ -138,14 +138,15 @@ public class GameMediatorImpl implements GameMediator {
 
     @Override
     public void computerMoved() throws OutOfBoundMoveException, CellMarkedException {
-        Move computerMove = new AI().getComputerMove(this.gameState.getBoardState(), this.gameState.getBoardRows(), this.gameState.getBoardColumns());
+        Move computerMove = new AI().getComputerMove(this.gameState.boardState,
+                this.gameState.boardRows, this.gameState.boardColumns);
 
         this.playerMoved(computerMove);
     }
 
     @Override
     public boolean isComputerMove() {
-        if(this.gameState.getPlayerStateMachine().getCurrentPlayer() instanceof Computer){
+        if(this.gameState.playerStateMachine.getCurrentPlayer() instanceof Computer){
             return true;
         }
 

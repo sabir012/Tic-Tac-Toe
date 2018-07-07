@@ -102,6 +102,6 @@ public class GameController implements Game{
             throw new IncorrectMoveException();
         }
 
-        return new Move(row,column);
+        return new Move.MoveBuilder(row,column).build();
     }
 }
