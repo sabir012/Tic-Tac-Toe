@@ -41,7 +41,7 @@ public class TestMediator extends TestCase {
     }
 
     @Test
-    public void test_mediator_player_moved() throws OutOfBoundMoveException, CellMarkedException {
+    public void test_shouldReturnPlayerMovedX() throws OutOfBoundMoveException, CellMarkedException {
         //when
         Move move = new Move.MoveBuilder(1,1).build();
         mediator.playerMoved(move);
@@ -51,7 +51,7 @@ public class TestMediator extends TestCase {
     }
 
     @Test
-    public void test_mediator_isComputer_move() throws OutOfBoundMoveException, CellMarkedException {
+    public void test_shouldReturnIsComputerMoveTrue() throws OutOfBoundMoveException, CellMarkedException {
         //when
         mediator.playerMoved(new Move.MoveBuilder(1,1).build());
         mediator.playerMoved(new Move.MoveBuilder(2,2).build());

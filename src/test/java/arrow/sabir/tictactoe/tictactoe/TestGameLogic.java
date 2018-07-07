@@ -33,7 +33,7 @@ public class TestGameLogic extends TestCase {
     }
 
     @Test
-    public void test_row_winner_found(){
+    public void test_shouldReturnWinnerFoundByRow(){
         //when
         this.gameState.boardState[0][0] = "X";
         this.gameState.boardState[0][1] = "X";
@@ -44,7 +44,7 @@ public class TestGameLogic extends TestCase {
     }
 
     @Test
-    public void test_column_winner_found(){
+    public void test_shouldReturnWinnerFoundByColumn(){
         //when
         this.gameState.boardState[0][0] = "X";
         this.gameState.boardState[1][0] = "X";
@@ -55,7 +55,7 @@ public class TestGameLogic extends TestCase {
     }
 
     @Test
-    public void test_diagonal_winner_found(){
+    public void test_shouldReturnWinnerFoundByDiagonal(){
         //when
         this.gameState.boardState[0][0] = "X";
         this.gameState.boardState[1][1] = "X";
@@ -66,7 +66,7 @@ public class TestGameLogic extends TestCase {
     }
 
     @Test
-    public void test_row_winner_not_found(){
+    public void test_shouldReturnWinnerNotFoundByRow(){
         //when
         this.gameState.boardState[0][0] = "X";
         this.gameState.boardState[0][1] = "X";
@@ -76,7 +76,7 @@ public class TestGameLogic extends TestCase {
     }
 
     @Test
-    public void test_column_winner_not_found(){
+    public void test_shouldReturnWinnerNotFoundByColumn(){
         //when
         this.gameState.boardState[0][0] = "X";
         this.gameState.boardState[1][0] = "X";
@@ -86,7 +86,7 @@ public class TestGameLogic extends TestCase {
     }
 
     @Test
-    public void test_diagonal_winner_not_found(){
+    public void test_shouldReturnWinnerNotFoundByDiagonal(){
         //when
         this.gameState.boardState[0][0] = "X";
         this.gameState.boardState[1][1] = "X";
@@ -96,7 +96,7 @@ public class TestGameLogic extends TestCase {
     }
 
     @Test
-    public void test_board_full(){
+    public void test_shouldReturnBoardIsFull(){
         //when
         for(int i=0;i<this.gameState.boardState.length;i++){
             for(int j=0; j<this.gameState.boardState[0].length;j++){

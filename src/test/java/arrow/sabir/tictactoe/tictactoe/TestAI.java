@@ -35,7 +35,7 @@ public class TestAI extends TestCase {
     }
 
     @Test
-    public void test_AI_can_found_last_cell(){
+    public void test_shouldReturnMove_1_1(){
         //when
         this.gameState.boardState[0][0] = " ";
         Move move = new AI().getComputerMove(

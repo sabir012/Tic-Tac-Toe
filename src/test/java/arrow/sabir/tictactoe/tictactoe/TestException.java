@@ -45,7 +45,7 @@ public class TestException extends TestCase {
 
 
     @Test
-    public void test_cell_marked_exception(){
+    public void test_shouldThrowCellMarkedException(){
         //when
         this.gameState.boardState[1][1] = "X";
 
@@ -55,21 +55,21 @@ public class TestException extends TestCase {
     }
 
     @Test
-    public void test_out_of_bound_exception_column(){
+    public void test_shouldThrowOutOfBoundExceptionColumn(){
         //then
         assertThatThrownBy(()->mediator.playerMoved(new Move.MoveBuilder(1,20).build()))
                 .isInstanceOf(OutOfBoundMoveException.class);
     }
 
     @Test
-    public void test_out_of_bound_exception_row(){
+    public void test_shouldThrowOutOfBoundExceptionRow(){
         //then
         assertThatThrownBy(()->mediator.playerMoved(new Move.MoveBuilder(20,1).build()))
                 .isInstanceOf(OutOfBoundMoveException.class);
     }
 
     @Test
-    public void incorrect_move_exception(){
+    public void test_shouldThrowIncorrectMoveException(){
         //When
         String commandStr = "test";
 
