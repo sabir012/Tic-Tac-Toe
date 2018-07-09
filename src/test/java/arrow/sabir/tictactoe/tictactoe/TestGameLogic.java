@@ -2,109 +2,82 @@ package arrow.sabir.tictactoe.tictactoe;
 
 import arrow.sabir.tictactoe.tictactoe.mediator.GameMediator;
 import arrow.sabir.tictactoe.tictactoe.mediator.GameMediatorImpl;
-import arrow.sabir.tictactoe.tictactoe.model.GameState;
-import arrow.sabir.tictactoe.tictactoe.model.player.Computer;
-import arrow.sabir.tictactoe.tictactoe.model.player.Human;
-import arrow.sabir.tictactoe.tictactoe.model.player.Player;
-import arrow.sabir.tictactoe.tictactoe.model.player.PlayerStateMachine;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import static org.junit.Assert.assertEquals;
 
 
-public class TestGameLogic extends TestCase {
-    private GameState gameState;
+public class TestGameLogic extends TestParentSetUp {
     private GameMediator mediator;
 
 
     @Before
     public void setUp() {
-        gameState = new GameState(
-                new PlayerStateMachine(
-                        new ArrayList<Player>(Arrays.asList(new Human("X")))), 3, 3);
+        super.setUp();
 
-        this.gameState.playerStateMachine.setNewPlayer(new Human("O"));
-        this.gameState.playerStateMachine.setNewPlayer(new Computer("H"));
-
-        mediator = new GameMediatorImpl(this.gameState);
+        mediator = new GameMediatorImpl(this.getGameState());
     }
 
     @Test
     public void test_shouldReturnWinnerFoundByRow(){
-        //when
-        this.gameState.boardState[0][0] = "X";
-        this.gameState.boardState[0][1] = "X";
-        this.gameState.boardState[0][2] = "X";
+        this.getGameState().boardState[0][0] = "X";
+        this.getGameState().boardState[0][1] = "X";
+        this.getGameState().boardState[0][2] = "X";
 
-        //then
         assertEquals(true, mediator.isWinnerFound());
     }
 
     @Test
     public void test_shouldReturnWinnerFoundByColumn(){
-        //when
-        this.gameState.boardState[0][0] = "X";
-        this.gameState.boardState[1][0] = "X";
-        this.gameState.boardState[2][0] = "X";
+        this.getGameState().boardState[0][0] = "X";
+        this.getGameState().boardState[1][0] = "X";
+        this.getGameState().boardState[2][0] = "X";
 
-        //then
         assertEquals(true, mediator.isWinnerFound());
     }
 
     @Test
     public void test_shouldReturnWinnerFoundByDiagonal(){
-        //when
-        this.gameState.boardState[0][0] = "X";
-        this.gameState.boardState[1][1] = "X";
-        this.gameState.boardState[2][2] = "X";
+        this.getGameState().boardState[0][0] = "X";
+        this.getGameState().boardState[1][1] = "X";
+        this.getGameState().boardState[2][2] = "X";
 
-        //then
         assertEquals(true, mediator.isWinnerFound());
     }
 
     @Test
     public void test_shouldReturnWinnerNotFoundByRow(){
-        //when
-        this.gameState.boardState[0][0] = "X";
-        this.gameState.boardState[0][1] = "X";
+        this.getGameState().boardState[0][0] = "X";
+        this.getGameState().boardState[0][1] = "X";
 
-        //then
         assertEquals(false, mediator.isWinnerFound());
     }
 
     @Test
     public void test_shouldReturnWinnerNotFoundByColumn(){
-        //when
-        this.gameState.boardState[0][0] = "X";
-        this.gameState.boardState[1][0] = "X";
+        this.getGameState().boardState[0][0] = "X";
+        this.getGameState().boardState[1][0] = "X";
 
-        //then
         assertEquals(false, mediator.isWinnerFound());
     }
 
     @Test
     public void test_shouldReturnWinnerNotFoundByDiagonal(){
-        //when
-        this.gameState.boardState[0][0] = "X";
-        this.gameState.boardState[1][1] = "X";
+        this.getGameState().boardState[0][0] = "X";
+        this.getGameState().boardState[1][1] = "X";
 
-        //then
         assertEquals(false, mediator.isWinnerFound());
     }
 
     @Test
     public void test_shouldReturnBoardIsFull(){
-        //when
-        for(int i=0;i<this.gameState.boardState.length;i++){
-            for(int j=0; j<this.gameState.boardState[0].length;j++){
-                this.gameState.boardState[i][j] = "X";
+        for(int i=0;i<this.getGameState().boardState.length;i++){
+            for(int j=0; j<this.getGameState().boardState[0].length;j++){
+                this.getGameState().boardState[i][j] = "X";
             }
         }
 
-        //then
         assertEquals(true, mediator.isBoardFull());
     }
 }

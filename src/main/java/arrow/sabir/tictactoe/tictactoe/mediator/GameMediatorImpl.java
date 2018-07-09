@@ -152,4 +152,9 @@ public class GameMediatorImpl implements GameMediator {
 
         return false;
     }
+
+    @Override
+    public GameView getView(){
+        return this.gameView;
+    }
 }
